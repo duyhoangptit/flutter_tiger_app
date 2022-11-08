@@ -315,7 +315,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // change password
       Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen())
+          MaterialPageRoute(builder: (context) => RegisterScreen())
       );
     }).catchError((e) => {
       print(e)

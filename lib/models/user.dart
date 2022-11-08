@@ -5,18 +5,7 @@ class User {
   String accessToken = "";
   String refreshToken = "";
   Null photo;
-  Null isActive;
-
-  User(String userId, String username, String email,
-      String accessToken, String refreshToken, Null photo, Null isActive) {
-    this.userId = userId;
-    this.username = username;
-    this.email = email;
-    this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
-    this.photo = photo;
-    this.isActive = isActive;
-  }
+  bool isActive = false;
 
   User.fromJson(Map<String, dynamic> json) :
         userId = json['user_id'],
