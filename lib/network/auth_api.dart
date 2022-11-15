@@ -1,20 +1,22 @@
 import 'dart:async';
 
+import 'package:flutter_tiger_app/models/api_response.dart';
 import 'package:flutter_tiger_app/models/user.dart';
 import 'package:flutter_tiger_app/network/common-api.dart';
+import 'package:flutter_tiger_app/utilities/api_url.dart';
 
 class AuthApi {
   Future<User> signIn(String email, String password) async {
     var c = Completer<User>();
     try {
-      var response = await CommonApi.instance.dio.post(
-        '/api/v1/auth/login',
+      var jsonData = await CommonApi.instance.dio.post(
+        ApiUrl.LOGIN,
         data: {'email': email, 'password': password},
       );
-
-      print(response);
-      var result = User.fromJson(response.data['data']);
-      c.complete(result);
+      print(jsonData.data);
+      
+      var objRes = ApiResponse<User>.fromJson(jsonData.data, (data) => User.fromJson(data));
+      c.complete(objRes.data);
     } catch (e) {
       c.completeError(e);
     }
@@ -26,7 +28,7 @@ class AuthApi {
     var c = Completer<int>();
     try {
       var response = await CommonApi.instance.dio.post(
-        '/api/v1/auth/register',
+        ApiUrl.REGISTER,
         data: {'email': email},
       );
 
@@ -43,7 +45,7 @@ class AuthApi {
     var c = Completer<User>();
     try {
       var response = await CommonApi.instance.dio.post(
-        '/api/v1/auth/verify-otp',
+        ApiUrl.VERIFY_OTP,
         data: {'email': email, 'otp': otp},
       );
 
@@ -60,7 +62,7 @@ class AuthApi {
     var c = Completer<User>();
     try {
       var response = await CommonApi.instance.dio.post(
-        '/api/v1/auth/refresh-token',
+        ApiUrl.REFRESH_TOKEN,
         data: {'refresh_token': refreshToken},
       );
 

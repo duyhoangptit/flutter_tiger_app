@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tiger_app/screens/index_screen.dart';
-import 'package:flutter_tiger_app/screens/login_screen.dart';
-import 'package:flutter_tiger_app/screens/otp_screen.dart';
-
 void main() {
   runApp(const MyApp());
 }
